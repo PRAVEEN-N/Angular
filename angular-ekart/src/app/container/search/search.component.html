@@ -5,5 +5,5 @@
         <i class="fa fa fa-search" aria-hidden="true"></i>
     </button>
 </div>
-    <p>Search results for : {{searchText}}</p>
+    <p *ngIf="searchText.length > 0">Search results for : {{searchText}}</p>
 </div>
