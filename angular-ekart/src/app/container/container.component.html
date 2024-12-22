@@ -1,5 +1,5 @@
 <div class="ekart--product--list">
-   <app-search></app-search>
-   <app-product-list></app-product-list>
+   <app-search (searchProductText)="onSearchProducttext($event)"></app-search>
+   <app-product-list [searchText]="searchString"></app-product-list>
     <!-- <app-product-list></app-product-list> -->
 </div>

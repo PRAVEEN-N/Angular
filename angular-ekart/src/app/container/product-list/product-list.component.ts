@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-product-list',
@@ -612,4 +612,6 @@ export class ProductListComponent {
     // this.products = this.products.filter(product => product.is_in_inventory.toString() === filter);
     // }
   }
+  @Input()
+  searchText:string = "";
 }

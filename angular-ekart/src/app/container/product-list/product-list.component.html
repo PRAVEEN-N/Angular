@@ -4,14 +4,16 @@
   [outOfStock]="outOfStock"
   (selectedFilterChange)="onFilterChange($event)"
 ></app-filter>
+<p>Searched Text {{searchText}}</p>
 <div class="container">
   <div *ngFor="let product of products">
-    <app-product
-      [product]="product"
-      *ngIf="
+    <!-- *ngIf="
         selectedFilter === 'all' ||
         product.is_in_inventory.toString() === selectedFilter
-      "
+      " -->
+    <app-product
+      [product]="product"
+      *ngIf="searchText === '' || product.name.toLowerCase().includes(searchText.toLowerCase())"
     ></app-product>
   </div>
 </div>

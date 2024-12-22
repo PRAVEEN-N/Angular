@@ -33,4 +33,8 @@ export class ContainerComponent {
       this.cartCount--;
     }
   }
+  searchString:string = "";
+  onSearchProducttext(text: string) {
+    this.searchString = text;
+  }
 }
