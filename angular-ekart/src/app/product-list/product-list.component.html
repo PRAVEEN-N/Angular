@@ -1,0 +1,14 @@
+<div class="ekart--product--list">
+  <p>Name : {{ product.name }}</p>
+  <p>Price: {{ product.price }}</p>
+  <p>
+    {{
+      product.stock > 0 ? product.stock + " items available" : "Not available"
+    }}
+  </p>
+  <p>Discount Price: {{ getDiscountedPrice() }}</p>
+  <button [disabled]="!(product.stock > 0)">Buy Now</button>
+  <input type="text" [value]="name" (input)="onChange($event)" />
+  <p>name: {{ name }}</p>
+  <!-- We can use [disabled] bracket or  bind-disabled -->
+</div>
