@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filter',
@@ -12,4 +12,13 @@ export class FilterComponent {
   inStock: number = 0;
   @Input()
   outOfStock: number = 0;
+  selectedFilter:string = 'all'
+
+  @Output()
+  selectedFilterChange:EventEmitter<string> = new EventEmitter<string>();
+
+  onSelectedFilterChange(){
+    console.log(this.selectedFilter);
+    this.selectedFilterChange.emit(this.selectedFilter);
+  }
 }
