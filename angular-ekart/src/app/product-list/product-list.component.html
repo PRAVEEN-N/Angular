@@ -7,8 +7,12 @@
     }}
   </p>
   <p>Discount Price: {{ getDiscountedPrice() }}</p>
-  <button [disabled]="!(product.stock > 0)">Buy Now</button>
-  <input type="text" [value]="name" (input)="onChange($event)" />
-  <p>name: {{ name }}</p>
-  <!-- We can use [disabled] bracket or  bind-disabled -->
+  <button [disabled]="!(product.stock > 0)">Buy Now</button><br>
+  <button (click)="decrementCartCount()" class="cart-button">
+    -
+  </button>
+  {{cartCount}}
+  <button (click)="incrementCartCount()" class="cart-button">
+    +
+  </button>
 </div>

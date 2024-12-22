@@ -11,9 +11,10 @@ export class ProductListComponent {
     name: 'Samsung Galaxy S10',
     price: 7000,
     description: 'A smart phone from Samsung',
-    stock: 0,
+    stock: 5,
     discount: 10,
   }
+  cartCount:number = 0;
   name= 'John Doe'
   getDiscountedPrice() {
     return (this.product.price - (this.product.price  * this.product.discount / 100)).toFixed(2);
@@ -21,5 +22,15 @@ export class ProductListComponent {
   onChange(event: any) {
     console.log(event);
     this.name = event.target.value;
+  }
+  incrementCartCount() {
+    if(this.cartCount < this.product.stock) {
+      this.cartCount++;
+    }
+  }
+  decrementCartCount() {
+    if(this.cartCount > 0) {
+      this.cartCount--;
+    }
   }
 }
