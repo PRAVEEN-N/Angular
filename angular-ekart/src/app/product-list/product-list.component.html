@@ -1,18 +1,3 @@
 <div class="ekart--product--list">
-  <p>Name : {{ product.name }}</p>
-  <p>Price: {{ product.price }}</p>
-  <p>
-    {{
-      product.stock > 0 ? product.stock + " items available" : "Not available"
-    }}
-  </p>
-  <p>Discount Price: {{ getDiscountedPrice() }}</p>
-  <button [disabled]="!(product.stock > 0)">Buy Now</button><br>
-  <button (click)="decrementCartCount()" class="cart-button">
-    -
-  </button>
-  {{cartCount}}
-  <button (click)="incrementCartCount()" class="cart-button">
-    +
-  </button>
+    <app-search></app-search>
 </div>
