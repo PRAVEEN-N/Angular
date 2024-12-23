@@ -6,7 +6,8 @@
 ></app-filter>
 <p>Searched Text {{searchText}}</p>
 <div class="container">
-  <div *ngFor="let product of products" (click)="selectedProduct = product">
+  <!-- selectedProduct=product -->
+  <div *ngFor="let product of products" (click)="setProduct(product)">
     <!-- *ngIf="
         selectedFilter === 'all' ||
         product.is_in_inventory.toString() === selectedFilter

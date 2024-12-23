@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @Component({
   selector: 'app-container',
@@ -37,4 +38,8 @@ export class ContainerComponent {
   onSearchProducttext(text: string) {
     this.searchString = text;
   }
+
+  // @ViewChild('productListComponent') // we can use this syntax as well
+  @ViewChild(ProductListComponent) // we can use this syntax as well, it is more explicit and recommended way to use ViewChild decorator in Angular
+  productListComponent: ProductListComponent;
 }

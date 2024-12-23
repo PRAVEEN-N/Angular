@@ -8,29 +8,26 @@
     
     <div class="ekart-product-detail">
         <div class="ekart-product-detail-name">
-            <h2>Michael Feburary SK8-Hi</h2>
+            <h2>{{product?.name}}</h2>
         </div>
         <div class="ekart-product-detail-gbc">
-            <span>MEN</span>
-            <span>NIKE</span>
-            <span>SPORTS</span>
+            <span>{{product.gender}}</span>
+            <span>{{product.brand}}</span>
+            <span>{{product.category}}</span>
         </div>
         <div class="ekart-product-detail-price">
             <p>
                 <b>Price Each Pair:</b>
-                <span style="background-color: red; color:white"><s>$699</s></span>
-                <span style="background-color: green; color:white">$599</span> (Inclusive of all taxes)
+                <span style="background-color: red; color:white"><s>{{product.price}}</s></span>
+                <span style="background-color: green; color:white">{{product.discountPrice}}</span> (Inclusive of all taxes)
             </p>
         </div>
         <div class="ekart-product-detail-size">
             <div style="padding: 5px 0px;border-bottom: #ccc 2px solid">
                 <h4>Available Size</h4>
             </div>
-            <diV style="margin-top: 20px">
-                <span class="ekart-product-detail-available-size">6</span>
-                <span class="ekart-product-detail-available-size">7</span>
-                <span class="ekart-product-detail-available-size">8</span>
-                <span class="ekart-product-detail-available-size">9</span>
+            <diV style="margin-top: 20px" *ngFor="let size of product.size">
+                <span class="ekart-product-detail-available-size">{{size}}</span>
             </diV>                
         </div>
 
@@ -38,11 +35,8 @@
             <div style="padding: 5px 0px;border-bottom: #ccc 2px solid">
                 <h4>Available Color</h4>
             </div>
-            <diV style="margin-top: 20px;">
-                <span class="ekart-product-detail-available-color" style="background-color: red;"></span>
-                <span class="ekart-product-detail-available-color" style="background-color: green;"></span>
-                <span class="ekart-product-detail-available-color" style="background-color: black;"></span>
-                <span class="ekart-product-detail-available-color" style="background-color: blue;"></span>
+            <diV style="margin-top: 20px;" *ngFor="let color of product.color">
+                <span class="ekart-product-detail-available-color" [ngStyle]="{'background-color': color}"></span>
             </diV>                
         </div>
 
@@ -51,7 +45,7 @@
                 <h4>Product Description</h4>
             </div>
             <div style="margin-top: 20px">
-                <p>DESCRIPTION</p>
+                <p>{{product.description}}</p>
             </div>                
         </div>
     </div>

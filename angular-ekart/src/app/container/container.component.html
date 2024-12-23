@@ -1,6 +1,6 @@
 <div class="ekart--product--list">
    <app-search (searchProductText)="onSearchProducttext($event)"></app-search>
    <app-product-list [searchText]="searchString" #productListComponent></app-product-list>
-   <product-details *ngIf="productListComponent.selectedProduct"></product-details>
+   <product-details *ngIf="productListComponent.selectedProduct" [productListComp]="productListComponent"></product-details>
     <!-- <app-product-list></app-product-list> -->
 </div>

@@ -17,7 +17,7 @@ export class ProductListComponent {
       brand: 'NIKE',
       gender: 'MEN',
       category: 'RUNNING',
-      size: [6, 7, 8, 9, 10],
+      size: [6, 7, 8, 10],
       color: ['White', 'Blue', 'Black'],
       price: 160,
       discountPrice: 140,
@@ -616,4 +616,8 @@ export class ProductListComponent {
   }
   @Input()
   searchText:string = "";
+  setProduct(product:Product) {
+    console.log(product);
+    this.selectedProduct = product;
+  }
 }
