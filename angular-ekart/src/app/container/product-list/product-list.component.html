@@ -7,14 +7,15 @@
 <p>Searched Text {{searchText}}</p>
 <div class="container">
   <!-- selectedProduct=product -->
-  <div *ngFor="let product of products" (click)="setProduct(product)">
+  <ng-container *ngFor="let product of products" >
     <!-- *ngIf="
         selectedFilter === 'all' ||
         product.is_in_inventory.toString() === selectedFilter
       " -->
     <app-product
+    (click)="setProduct(product)"
       [product]="product"
       *ngIf="searchText === '' || product.name.toLowerCase().includes(searchText.toLowerCase())"
     ></app-product>
-  </div>
+  </ng-container>
 </div>
