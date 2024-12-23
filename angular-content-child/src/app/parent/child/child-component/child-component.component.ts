@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef } from '@angular/core';
+import { Component, ContentChild, ContentChildren, ElementRef, QueryList } from '@angular/core';
 import { TestComponent } from '../../test/test.component';
 
 @Component({
@@ -12,10 +12,14 @@ export class ChildComponentComponent {
 
   @ContentChild(TestComponent)
   testComp:TestComponent;
-  
+
+  @ContentChildren('para')
+  paraEls:QueryList<ElementRef>
+
   onClick() {
     console.log(this.paraEl);
     console.log('name', this.testComp.name);
+    console.log('paraEls', this.paraEls)
   }
 
 }
