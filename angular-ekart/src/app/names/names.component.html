@@ -1,0 +1,15 @@
+<table>
+    <tr>
+        <td><input type ='text' placeholder="firstName" #name> </td>
+    </tr>
+    <tr>
+        <td><input type ='text' placeholder="middleName" #name> </td>
+    </tr>
+    <tr>
+        <td><input type ='text' placeholder="lastName" #name> </td>
+    </tr>
+    <tr>
+        <td><button (click)="show()">Show</button></td>
+    </tr>
+</table>
+<p *ngIf=" fullName.length > 0 ">{{fullName}}</p>
