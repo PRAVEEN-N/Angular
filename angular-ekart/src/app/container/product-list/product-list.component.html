@@ -4,18 +4,39 @@
   [outOfStock]="outOfStock"
   (selectedFilterChange)="onFilterChange($event)"
 ></app-filter>
-<p>Searched Text {{searchText}}</p>
+<p>Searched Text {{ searchText }}</p>
 <div class="container">
   <!-- selectedProduct=product -->
-  <ng-container *ngFor="let product of products" >
+  <ng-container *ngFor="let product of products">
     <!-- *ngIf="
         selectedFilter === 'all' ||
         product.is_in_inventory.toString() === selectedFilter
       " -->
     <app-product
-    (click)="setProduct(product)"
+      (click)="setProduct(product)"
       [product]="product"
-      *ngIf="searchText === '' || product.name.toLowerCase().includes(searchText.toLowerCase())"
+      *ngIf="
+        searchText === '' ||
+        product.name.toLowerCase().includes(searchText.toLowerCase())
+      "
     ></app-product>
   </ng-container>
 </div>
+<div class="ekart-featured-products">
+  <div class="ekart-featured-product-heading">
+    <h2>Latest Arrival in Popular Brands</h2>
+  </div>
+    <app-featured-brands>
+      <h3 class="title">New Arrivals in Nike</h3>
+      <button class="call-to-action">Show New Arrivals in Nike</button>
+    </app-featured-brands>
+    <app-featured-brands>
+      <h3 class="title">New Arrivals in Adidas</h3>
+      <button class="call-to-action">Show New Arrivals in Adidas</button>
+    </app-featured-brands>
+    <app-featured-brands>
+      <h3 class="title">New Arrivals in Reebok</h3>
+      <button class="call-to-action">Show New Arrivals in Reebok</button>
+    </app-featured-brands>
+</div>
+

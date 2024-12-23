@@ -1,6 +1,21 @@
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+.ekart-featured-products {
+  background-color: #282828;
+  padding: 20px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.ekart-featured-product-heading {
+  width: 320px;
+  margin: 10px;
+  padding: 20px 30px;
+  color: #fff;
 }
