@@ -21,10 +21,11 @@ export class ExampleComponent implements OnInit {
     console.log('ngOnInit called');
   }
 }
+```
 
 `ngOnChanges` is another lifecycle hook that is called before `ngOnInit` and whenever one or more data-bound input properties change. It receives a SimpleChanges object that contains the current and previous values of the changed properties.
 
-typescript
+```typescript
 import { Component, OnChanges, SimpleChanges, Input } from '@angular/core';
 
 @Component({
@@ -39,3 +40,4 @@ export class ExampleComponent implements OnChanges {
     console.log('ngOnChanges called', changes);
   }
 }
+```
