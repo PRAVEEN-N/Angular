@@ -79,3 +79,21 @@ export class ExampleComponent implements AfterContentInit {
 
 In this example, the `ngAfterContentInit` method is used to perform initialization logic that depends on the content projected into the component. The `@ContentChild` decorator is used to query for a reference to the projected content.
 
+
+/**
+ * Angular lifecycle hook that is called after the default change detector has completed checking all of the directive's content.
+ * This method is called during every change detection run, immediately after `ngAfterContentInit` and `ngAfterContentChecked` 
+ * of child components.
+ * 
+ * Use this method to perform any custom change detection or cleanup logic that needs to occur after the content has been checked.
+ * 
+ * Note: This method can be called frequently, so any logic inside it should be optimized for performance.
+ * 
+ * Example usage:
+ * 
+ * ```typescript
+ * ngAfterContentChecked() {
+ *   // Custom logic to execute after content has been checked
+ * }
+ * ```
+ */
