@@ -236,3 +236,59 @@ export class ExampleComponent {
 - `removeChild(parent: any, oldChild: any, isHostElement?: boolean): void`: Removes a child element from a parent element.
 
 Using `Renderer2` ensures that your code is compatible with different rendering environments and helps maintain a clean separation between your application logic and the underlying DOM manipulation.
+
+
+## `@HostListener`
+
+The `@HostListener` decorator in Angular allows you to listen to events on the host element of a directive or component. This decorator provides a way to handle events in a clean and declarative manner, without having to manually add event listeners in the component's code.
+
+### Usage
+
+To use `@HostListener`, you need to import it from `@angular/core` and apply it to a method in your directive or component class. The method will be called whenever the specified event is triggered on the host element.
+
+```typescript
+import { Directive, HostListener } from '@angular/core';
+
+@Directive({
+    selector: '[appExample]'
+})
+export class ExampleDirective {
+    @HostListener('click', ['$event'])
+    handleClick(event: Event): void {
+        // Handle the click event
+        console.log('Host element clicked', event);
+    }
+}
+```
+
+In this example, the `handleClick` method is decorated with `@HostListener('click', ['$event'])`, which means it will be called whenever the host element is clicked. The `$event` parameter allows you to access the event object.
+
+### Common Use Cases
+
+- Handling user interactions such as clicks, mouse movements, and keyboard events.
+- Implementing custom behavior for host elements.
+- Enhancing the functionality of existing elements without modifying their templates.
+
+### Example
+
+```typescript
+import { Component, HostListener } from '@angular/core';
+
+@Component({
+    selector: 'app-example',
+    template: `
+        <p>Click anywhere in this component to trigger the event.</p>
+    `
+})
+export class ExampleComponent {
+    @HostListener('document:click', ['$event'])
+    handleDocumentClick(event: Event): void {
+        // Handle the document click event
+        console.log('Document clicked', event);
+    }
+}
+```
+
+In this example, the `handleDocumentClick` method is decorated with `@HostListener('document:click', ['$event'])`, which means it will be called whenever a click event occurs anywhere in the document. This can be useful for implementing global event handlers or detecting clicks outside of a specific element.
+
+Using `@HostListener` helps keep your event handling logic organized and encapsulated within your components and directives, making your code more maintainable and easier to understand.

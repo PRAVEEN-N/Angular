@@ -16,6 +16,7 @@ import { ProductDetailsComponent } from './container/product-details/product-det
 import { NamesComponent } from './names/names.component';
 import { FeaturedBrandsComponent } from './container/featured-brands/featured-brands.component';
 import { SetBackGroundColor } from './CustomDirectives/SetbackgroundColor.directive';
+import { HighlightDirective } from './CustomDirectives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SetBackGroundColor } from './CustomDirectives/SetbackgroundColor.direct
     ProductDetailsComponent,
     NamesComponent,
     FeaturedBrandsComponent,
-    SetBackGroundColor
+    SetBackGroundColor,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
