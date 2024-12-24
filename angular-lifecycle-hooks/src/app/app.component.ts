@@ -1,11 +1,11 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
 
   title = 'angular-lifecycle-hooks';
   constructor() {
@@ -16,4 +16,8 @@ export class AppComponent {
     this.inputVal = input.value;
   }
 
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit called in Application component');
+    // console.log('ngAfterViewInit ', this.projectPara.nativeElement);
+  }
 }
