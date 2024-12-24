@@ -41,3 +41,12 @@ export class ExampleComponent implements OnChanges {
   }
 }
 ```
+## ngDoCheck
+
+The `ngDoCheck` lifecycle hook is a method in Angular that allows developers to implement their own change detection logic. This method is called during every change detection run, immediately after the default change detector has completed its checks. It is useful for detecting and acting upon changes that Angular's default change detection mechanism might not catch.
+
+### Usage
+
+To use `ngDoCheck`, you need to implement the `DoCheck` interface in your component class and define the `ngDoCheck` method. This method will be called by Angular whenever it performs change detection for that component.
+
+

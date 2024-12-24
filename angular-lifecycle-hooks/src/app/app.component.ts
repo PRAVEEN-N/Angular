@@ -11,9 +11,9 @@ export class AppComponent {
   constructor() {
     console.log("App Constructor");
   }
-  inputVal:string[] = [];
+  inputVal:string = '';
   onSubmit(input: HTMLInputElement ) {
-    this.inputVal.push(input.value);
+    this.inputVal = input.value;
   }
 
 }

@@ -1,5 +1,5 @@
 <div>
-  <input type="text" #input>
+  <input type="text" #input (focus)="0">
   <button (click)="onSubmit(input)">Submit</button>
   <app-demo [message]="inputVal">
   </app-demo>
