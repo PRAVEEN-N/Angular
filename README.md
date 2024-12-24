@@ -166,3 +166,31 @@ export class ExampleComponent implements AfterViewChecked {
 ```
 
 In this example, the `ngAfterViewChecked` method is used to perform custom change detection logic that depends on the component's view being checked. The `@ViewChild` decorator is used to query for a reference to a DOM element within the component's template.
+
+
+## `ngOnDestroy`
+
+The `ngOnDestroy` lifecycle hook is called just before Angular destroys the component. This hook is useful for performing any necessary cleanup, such as unsubscribing from observables, detaching event handlers, or releasing resources that were allocated during the component's lifecycle.
+
+### Usage
+
+To use `ngOnDestroy`, you need to implement the `OnDestroy` interface in your component class and define the `ngOnDestroy` method. This method will be called by Angular when the component is about to be destroyed.
+
+```typescript
+import { Component, OnDestroy } from '@angular/core';
+
+@Component({
+    selector: 'app-example',
+    template: `
+        <p>Example works!</p>
+    `
+})
+export class ExampleComponent implements OnDestroy {
+    ngOnDestroy(): void {
+        // Cleanup logic here
+        console.log('ngOnDestroy called');
+    }
+}
+```
+
+In this example, the `ngOnDestroy` method is used to perform cleanup logic before the component is destroyed. This is important for preventing memory leaks and ensuring that resources are properly released.

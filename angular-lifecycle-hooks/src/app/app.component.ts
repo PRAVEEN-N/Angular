@@ -8,6 +8,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 export class AppComponent implements AfterViewInit {
 
   title = 'angular-lifecycle-hooks';
+  toDestroy = false;
   constructor() {
     console.log("App Constructor");
   }
@@ -23,4 +24,9 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewChecked():void {
     console.log('ngAfterViewChecked called in Application component');
   }
+
+  onDestroy() {
+    this.toDestroy = !this.toDestroy;
+  }
+
 }
