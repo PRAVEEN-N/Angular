@@ -20,4 +20,7 @@ export class AppComponent implements AfterViewInit {
     console.log('ngAfterViewInit called in Application component');
     // console.log('ngAfterViewInit ', this.projectPara.nativeElement);
   }
+  ngAfterViewChecked():void {
+    console.log('ngAfterViewChecked called in Application component');
+  }
 }

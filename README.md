@@ -136,3 +136,33 @@ export class ExampleComponent implements AfterViewInit {
 ```
 
 In this example, the `ngAfterViewInit` method is used to perform initialization logic that depends on the component's view being fully rendered. The `@ViewChild` decorator is used to query for a reference to a DOM element within the component's template.
+
+
+## `ngAfterViewChecked`
+
+The `ngAfterViewChecked` lifecycle hook is called after Angular has checked the component's view and its children. This hook is useful for implementing custom change detection logic that needs to run after the view has been checked.
+
+### Usage
+
+To use `ngAfterViewChecked`, you need to implement the `AfterViewChecked` interface in your component class and define the `ngAfterViewChecked` method. This method will be called by Angular after each change detection cycle for the component's view.
+
+```typescript
+import { Component, AfterViewChecked, ViewChild } from '@angular/core';
+
+@Component({
+    selector: 'app-example',
+    template: `
+        <p #viewChildElement>Example works!</p>
+    `
+})
+export class ExampleComponent implements AfterViewChecked {
+    @ViewChild('viewChildElement') viewChild: any;
+
+    ngAfterViewChecked(): void {
+        // Custom change detection logic that depends on the view being checked
+        console.log('ngAfterViewChecked called', this.viewChild);
+    }
+}
+```
+
+In this example, the `ngAfterViewChecked` method is used to perform custom change detection logic that depends on the component's view being checked. The `@ViewChild` decorator is used to query for a reference to a DOM element within the component's template.
