@@ -1,7 +1,6 @@
-<h1>
-  Parent Component
-</h1>
-<app-demo [message]="'Hello World'">
-  <p>Child data</p>
-</app-demo>
-<p>Footer</p>
+<div>
+  <input type="text" #input>
+  <button (click)="onSubmit(input)">Submit</button>
+  <app-demo [message]="inputVal">
+  </app-demo>
+</div>
