@@ -194,3 +194,45 @@ export class ExampleComponent implements OnDestroy {
 ```
 
 In this example, the `ngOnDestroy` method is used to perform cleanup logic before the component is destroyed. This is important for preventing memory leaks and ensuring that resources are properly released.
+
+## `Renderer2`
+
+`Renderer2` is a service in Angular that provides an abstraction for manipulating the DOM. It is designed to be used in a platform-agnostic way, allowing your code to run not only in the browser but also in other environments such as server-side rendering with Angular Universal.
+
+### Usage
+
+To use `Renderer2`, you need to inject it into your component or directive and use its methods to perform DOM manipulations. This approach is preferred over directly accessing the DOM using native methods like `document.querySelector` or `element.nativeElement`.
+
+```typescript
+import { Component, Renderer2, ElementRef } from '@angular/core';
+
+@Component({
+    selector: 'app-example',
+    template: `
+        <p>Example works!</p>
+        <button (click)="changeText()">Change Text</button>
+    `
+})
+export class ExampleComponent {
+    constructor(private renderer: Renderer2, private el: ElementRef) { }
+
+    changeText(): void {
+        const p = this.el.nativeElement.querySelector('p');
+        this.renderer.setProperty(p, 'textContent', 'Text changed by Renderer2');
+    }
+}
+```
+
+### Common Methods
+
+- `setAttribute(el: any, name: string, value: string, namespace?: string | null): void`: Sets an attribute on an element.
+- `removeAttribute(el: any, name: string, namespace?: string | null): void`: Removes an attribute from an element.
+- `addClass(el: any, name: string): void`: Adds a CSS class to an element.
+- `removeClass(el: any, name: string): void`: Removes a CSS class from an element.
+- `setStyle(el: any, style: string, value: any, flags?: RendererStyleFlags2): void`: Sets a style property on an element.
+- `removeStyle(el: any, style: string, flags?: RendererStyleFlags2): void`: Removes a style property from an element.
+- `setProperty(el: any, name: string, value: any): void`: Sets a property on an element.
+- `appendChild(parent: any, newChild: any): void`: Appends a child element to a parent element.
+- `removeChild(parent: any, oldChild: any, isHostElement?: boolean): void`: Removes a child element from a parent element.
+
+Using `Renderer2` ensures that your code is compatible with different rendering environments and helps maintain a clean separation between your application logic and the underlying DOM manipulation.
