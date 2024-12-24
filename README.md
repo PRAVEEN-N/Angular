@@ -292,3 +292,56 @@ export class ExampleComponent {
 In this example, the `handleDocumentClick` method is decorated with `@HostListener('document:click', ['$event'])`, which means it will be called whenever a click event occurs anywhere in the document. This can be useful for implementing global event handlers or detecting clicks outside of a specific element.
 
 Using `@HostListener` helps keep your event handling logic organized and encapsulated within your components and directives, making your code more maintainable and easier to understand.
+
+
+## `@HostBinding`
+
+The `@HostBinding` decorator in Angular allows you to bind a property of the host element to a property in the directive or component class. This decorator provides a way to dynamically update the host element's properties or attributes based on the state of the directive or component.
+
+### Usage
+
+To use `@HostBinding`, you need to import it from `@angular/core` and apply it to a property or getter in your directive or component class. The property or getter will be bound to the specified property or attribute of the host element.
+
+```typescript
+import { Directive, HostBinding } from '@angular/core';
+
+@Directive({
+    selector: '[appExample]'
+})
+export class ExampleDirective {
+    @HostBinding('class.active') isActive = true;
+}
+```
+
+In this example, the `isActive` property is decorated with `@HostBinding('class.active')`, which means the `active` CSS class will be added to the host element whenever `isActive` is `true`.
+
+### Common Use Cases
+
+- Dynamically updating CSS classes or styles based on the state of the directive or component.
+- Binding host element properties such as `disabled`, `hidden`, or `title`.
+- Creating reusable directives that can modify the appearance or behavior of host elements.
+
+### Example
+
+```typescript
+import { Component, HostBinding } from '@angular/core';
+
+@Component({
+    selector: 'app-example',
+    template: `
+        <button (click)="toggleActive()">Toggle Active</button>
+        <p>Check the class of this component's host element.</p>
+    `
+})
+export class ExampleComponent {
+    @HostBinding('class.active') isActive = false;
+
+    toggleActive(): void {
+        this.isActive = !this.isActive;
+    }
+}
+```
+
+In this example, the `isActive` property is decorated with `@HostBinding('class.active')`, which means the `active` CSS class will be toggled on the host element whenever the `toggleActive` method is called. This can be useful for creating interactive components that respond to user actions.
+
+Using `@HostBinding` helps keep your component and directive logic encapsulated and makes it easier to manage the state and appearance of host elements in a declarative manner.
