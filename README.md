@@ -49,4 +49,33 @@ The `ngDoCheck` lifecycle hook is a method in Angular that allows developers to 
 
 To use `ngDoCheck`, you need to implement the `DoCheck` interface in your component class and define the `ngDoCheck` method. This method will be called by Angular whenever it performs change detection for that component.
 
+## `ngAfterContentInit`
+
+The `ngAfterContentInit` lifecycle hook is called after Angular has fully initialized all of the content of a directive or component. This hook is particularly useful when you need to perform any additional initialization that depends on the projected content being available.
+
+### Usage
+
+To use `ngAfterContentInit`, you need to implement the `AfterContentInit` interface in your component class and define the `ngAfterContentInit` method. This method will be called by Angular once the content projection is complete.
+
+```typescript
+import { Component, AfterContentInit, ContentChild } from '@angular/core';
+
+@Component({
+    selector: 'app-example',
+    template: `
+        <ng-content></ng-content>
+        <p>Example works!</p>
+    `
+})
+export class ExampleComponent implements AfterContentInit {
+    @ContentChild('projectedContent') content: any;
+
+    ngAfterContentInit(): void {// It will be called after ContentChild is intialized
+        // Initialization logic that depends on projected content
+        console.log('ngAfterContentInit called', this.content); 
+    }
+}
+```
+
+In this example, the `ngAfterContentInit` method is used to perform initialization logic that depends on the content projected into the component. The `@ContentChild` decorator is used to query for a reference to the projected content.
 

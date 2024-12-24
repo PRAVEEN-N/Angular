@@ -1,16 +1,18 @@
-import { Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-demo',
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.css']
 })
-export class DemoComponent implements OnChanges, OnInit, DoCheck{
+export class DemoComponent implements OnChanges, OnInit, DoCheck, AfterContentInit{
 
   name:string = '';
 
   @Input()
   message:string = '';
+  @ContentChild('parTemp')
+  projectPara!: ElementRef;
   constructor() {
     console.log("Demo Constructor");
     console.log('Message', this.message) // prints hello, but we are passing this data from parent component. Input properties not injected at initialization (Executing contructor).
@@ -24,5 +26,10 @@ export class DemoComponent implements OnChanges, OnInit, DoCheck{
   }
   ngDoCheck(): void {
     console.log('ngDoCheck is called');
+    console.log('ngDoCheck contentChild', this.projectPara);
+  }
+  ngAfterContentInit(): void {// It will be called after ContentChild is intialized
+    console.log('ngAfterContentInit called');
+    console.log('contentChild', this.projectPara.nativeElement);
   }
 }
