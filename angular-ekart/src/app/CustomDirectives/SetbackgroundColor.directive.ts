@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, Renderer2 } from "@angular/core";
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from "@angular/core";
 
 @Directive(
     {
@@ -6,6 +6,12 @@ import { Directive, ElementRef, OnInit, Renderer2 } from "@angular/core";
     }
 )
 export class SetBackGroundColor implements OnInit{
+
+    @Input() backColor: string = '#36454F';
+
+
+    @Input('textColor') color: string = 'white';
+
     // private renderer: Renderer2;
     constructor(private element:ElementRef, private renderer: Renderer2) {
         // this.renderer = renderer;
@@ -13,7 +19,7 @@ export class SetBackGroundColor implements OnInit{
     ngOnInit(): void {
         // this.element.nativeElement.style.backgroundColor = '#36454F';
         // this.element.nativeElement.style.color = 'white'
-        this.renderer.setStyle(this.element.nativeElement, 'backgroundColor', '#36454F');
-        this.renderer.setStyle(this.element.nativeElement, 'color', 'white');
+        this.renderer.setStyle(this.element.nativeElement, 'backgroundColor', this.backColor);
+        this.renderer.setStyle(this.element.nativeElement, 'color', this.color);
     }
 }
