@@ -1,0 +1,10 @@
+.sidebar-button{
+    width: 100%;
+    margin: 10px 0px;
+    padding: 12px 0px;
+    background-color: #371fbd;
+    color: #f0f0f3;
+    font-size: 20px;
+    font-weight: bold;
+    border: #28282B 3px solid;
+}

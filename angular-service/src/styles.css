@@ -1,0 +1,181 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@900&family=Roboto:wght@100;300;400&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.main-container{
+    width: 1120px;
+    margin: 100px auto;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.header-container{
+    display: flex;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.header-logo{
+    font-size: 34px;
+    padding: 15px 50px;
+    font-family: 'Heebo', sans-serif;
+    color: #1C2833;
+}
+.header-nav{
+    margin-left: 500px;
+    padding: 20px 10px;  
+}
+a{
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0px 10px;
+    color: #28282B;
+    font-weight: bold;
+}
+button{
+    padding: 12px 30px;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+}
+.header-button{
+    background-color: #0047AB;
+    color: white;
+    margin-left: 20px;
+    width: 160px;
+}
+.home-container{
+    padding-top: 70px;
+    padding-left: 170px;
+    padding-bottom: 50px;
+    display: flex;
+}
+.hero-container{
+    width: 420px;
+    padding: 30px 10px;
+}
+.hero-text{
+    margin: 20px 0px;
+}
+.hero-button{
+    background-color: #0047AB;
+    color: white;
+    width: 240px;
+    margin-top: 10px;
+}
+.sidebar-container{
+    border: #F0F3F4 3px solid;
+    padding: 10px 10px;
+    width: 340px;
+    height: 280px;
+    margin-left: 120px;
+}
+.sidebar-hero{
+    height: 180px;
+    background-image: url("data:image/jpeg;base64,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");
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+.sidebar-button{
+    width: 100%;
+    margin: 10px 0px;
+    padding: 12px 0px;
+    background-color: white;
+    color: #28282B;
+    font-size: 20px;
+    font-weight: bold;
+    border: #28282B 3px solid;
+}
+.admin-container{
+    background-color: white;
+}
+.admin-add-user{
+    height: 25%;
+    background-color: #28282B;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+input[type=text]{
+    width: 280px;
+    height: 40px;
+    padding: 10px 30px;
+    margin: 2px 1px;
+    border: none;
+}
+select{
+    width: 280px;
+    height: 40px;
+    padding: 10px 30px;
+    border: none;
+    margin: 2px 1px;
+}
+.admin-button{
+    margin: 8px 2px;
+    width: 563px;
+    background-color: #2ECC71;
+}
+.admin-user-list{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    background-color: white;
+}
+.admin-user-detail{
+    display: flex;
+    width: 70%;
+    margin: 5px auto;
+    padding: 15px 30px;
+    background-color: #28282B;
+    color: white;
+    border-bottom: #1D8348 3px solid;
+    font-size: 18px;
+    font-weight: lighter;
+}
+.admin-user-name{
+    width: 40%;
+}
+.admin-user-gender{
+    width: 20%;
+}
+.admin-user-subtype{
+    width: 20%;
+    border-left: #1D8348 3px solid;
+}
+.admin-user-active{
+    width: 20%;
+    border-left: #1D8348 3px solid;
+}
+.admin-user-show-detail-button{
+    padding: 2px 5px;
+    border: none;
+    background-color: #28282B;
+    color: yellow;
+    font-weight: bold;
+}
+.user-detail-container{
+    margin: 10px 50px;
+    width: 90%;
+    padding: 20px 150px;
+    display: flex;
+    border-top: #efefef 3px solid;
+}
+.user-detail-avatar-image{
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    margin: 20px auto;
+}
+.user-detail-info{
+    margin: 20px 50px;
+    padding: 30px 20px;
+}
+h2{
+    margin: 10px 0px;
+}
+p{
+    margin: 5px 0px;
+}
