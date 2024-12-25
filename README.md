@@ -345,3 +345,87 @@ export class ExampleComponent {
 In this example, the `isActive` property is decorated with `@HostBinding('class.active')`, which means the `active` CSS class will be toggled on the host element whenever the `toggleActive` method is called. This can be useful for creating interactive components that respond to user actions.
 
 Using `@HostBinding` helps keep your component and directive logic encapsulated and makes it easier to manage the state and appearance of host elements in a declarative manner.
+
+## View Encapsulation
+
+Angular provides three strategies for view encapsulation, which determine how styles are applied to components. These strategies are `ViewEncapsulation.None`, `ViewEncapsulation.Emulated`, and `ViewEncapsulation.ShadowDom`.
+
+### `ViewEncapsulation.None`
+
+When `ViewEncapsulation.None` is used, Angular does not apply any sort of encapsulation to the component's styles. This means that the styles defined in the component will be applied globally to the entire application.
+
+```typescript
+import { Component, ViewEncapsulation } from '@angular/core';
+
+@Component({
+    selector: 'app-example',
+    template: `
+        <p>Example works!</p>
+    `,
+    styles: [`
+        p {
+            color: red;
+        }
+    `],
+    encapsulation: ViewEncapsulation.None
+})
+export class ExampleComponent { }
+```
+
+In this example, the paragraph text will be red not only in the `ExampleComponent` but also in any other component that contains a `<p>` element.
+
+### `ViewEncapsulation.Emulated`
+
+`ViewEncapsulation.Emulated` is the default encapsulation mode in Angular. It emulates native Shadow DOM behavior by adding unique attributes to the component's host element and its descendants. This ensures that the styles are scoped to the component and do not affect other components.
+
+```typescript
+import { Component, ViewEncapsulation } from '@angular/core';
+
+@Component({
+    selector: 'app-example',
+    template: `
+        <p>Example works!</p>
+    `,
+    styles: [`
+        p {
+            color: blue;
+        }
+    `],
+    encapsulation: ViewEncapsulation.Emulated
+})
+export class ExampleComponent { }
+```
+
+In this example, the paragraph text will be blue only within the `ExampleComponent`, and other components will not be affected by these styles.
+
+### `ViewEncapsulation.ShadowDom`
+
+When `ViewEncapsulation.ShadowDom` is used, Angular leverages the native Shadow DOM API to encapsulate the component's styles. This provides true style encapsulation, ensuring that the styles are scoped to the component and do not leak out to other components.
+
+```typescript
+import { Component, ViewEncapsulation } from '@angular/core';
+
+@Component({
+    selector: 'app-example',
+    template: `
+        <p>Example works!</p>
+    `,
+    styles: [`
+        p {
+            color: green;
+        }
+    `],
+    encapsulation: ViewEncapsulation.ShadowDom
+})
+export class ExampleComponent { }
+```
+
+In this example, the paragraph text will be green only within the `ExampleComponent`, and the styles will not affect other components. This is because the styles are encapsulated within the component's Shadow DOM.
+
+### Summary
+
+- `ViewEncapsulation.None`: No encapsulation, styles are applied globally.
+- `ViewEncapsulation.Emulated`: Default mode, styles are scoped to the component using unique attributes.
+- `ViewEncapsulation.ShadowDom`: Uses native Shadow DOM for true encapsulation, styles are scoped to the component.
+
+Choosing the appropriate view encapsulation strategy depends on your specific use case and the level of style encapsulation you need for your components.
