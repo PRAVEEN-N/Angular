@@ -1,0 +1,21 @@
+<div class="box">
+  <nav class="nav-bar">
+    <button class="btn" (click)="onTabChange('info')">Info</button>
+    <button class="btn" (click)="onTabChange('terms')">Terms & Conditions</button>
+    <button class="btn" (click)="onTabChange('contact')">Contact</button>
+  </nav>
+  <div [ngSwitch]="tab">
+    <div *ngSwitchDefault="'info'">
+      <h1>Info</h1>
+      <p>Some info here</p>
+    </div>
+    <div *ngSwitchCase="'terms'">
+      <h1>Terms & Conditions</h1>
+      <p>Some terms and conditions here</p>
+    </div>
+    <div *ngSwitchCase="'contact'">
+      <h1>Contact</h1> 
+      <p>Contact us at</p>
+    </div>
+  </div>
+</div>
