@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Subscribe } from '../Services/subscribe.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { Subscribe } from '../Services/subscribe.service';
 export class HeaderComponent {
   selectedTab: string = 'home';
 
-  constructor(private service: Subscribe) {
+  constructor(@Inject('subscriber') private service: Subscribe) {
 
   }
 

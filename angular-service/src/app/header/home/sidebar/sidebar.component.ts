@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Subscribe } from 'src/app/Services/subscribe.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { Subscribe } from 'src/app/Services/subscribe.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  constructor(private service: Subscribe) {
+  constructor(@Inject('subscriber') private service: Subscribe) {
 
   }
 
