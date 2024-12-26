@@ -19,7 +19,7 @@ import { Subscribe } from './Services/subscribe.service';
   imports: [
     BrowserModule
   ],
-  providers: [Subscribe],
+  providers: [{provide:Subscribe, useClass: Subscribe}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
