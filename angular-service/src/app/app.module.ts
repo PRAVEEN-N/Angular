@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './header/home/home.component';
 import { HeroComponent } from './header/home/hero/hero.component';
 import { SidebarComponent } from './header/home/sidebar/sidebar.component';
+import { Subscribe } from './Services/subscribe.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { SidebarComponent } from './header/home/sidebar/sidebar.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [Subscribe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,8 +4,7 @@ import { Subscribe } from 'src/app/Services/subscribe.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css'],
-  providers: [Subscribe]
+  styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
   constructor(private service: Subscribe) {
