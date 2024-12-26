@@ -9,7 +9,6 @@ import { SidebarComponent } from './header/home/sidebar/sidebar.component';
 import { Subscribe } from './Services/subscribe.service';
 
 
-export const USER_TOKEN = new InjectionToken<Subscribe>('USER_TOKEN');
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +20,7 @@ export const USER_TOKEN = new InjectionToken<Subscribe>('USER_TOKEN');
   imports: [
     BrowserModule
   ],
-  providers: [{provide:USER_TOKEN, useClass: Subscribe}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
