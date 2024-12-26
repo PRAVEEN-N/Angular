@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Subscribe } from '../Services/subscribe.service';
+import { USER_TOKEN } from '../app.module';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import { Subscribe } from '../Services/subscribe.service';
 export class HeaderComponent {
   selectedTab: string = 'home';
 
-  constructor(@Inject('subscriber') private service: Subscribe) {
+  constructor(@Inject(USER_TOKEN) private service: Subscribe) {
 
   }
 

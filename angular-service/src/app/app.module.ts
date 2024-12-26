@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injectable, InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -8,6 +8,8 @@ import { HeroComponent } from './header/home/hero/hero.component';
 import { SidebarComponent } from './header/home/sidebar/sidebar.component';
 import { Subscribe } from './Services/subscribe.service';
 
+
+export const USER_TOKEN = new InjectionToken<Subscribe>('USER_TOKEN');
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,7 @@ import { Subscribe } from './Services/subscribe.service';
   imports: [
     BrowserModule
   ],
-  providers: [{provide:'subscriber', useClass: Subscribe}],
+  providers: [{provide:USER_TOKEN, useClass: Subscribe}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
