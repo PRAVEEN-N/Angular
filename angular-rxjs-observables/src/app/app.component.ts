@@ -1,15 +1,21 @@
-import { Component } from '@angular/core';
-import { from, Observable, of } from 'rxjs';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { from, fromEvent, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
+  ngAfterViewInit(): void {
+    this.createBtnObs();
+  }
   title = 'angular-observables';
 
   data: any[] = [];
+
+  @ViewChild('obsbtn')
+  obsbtn: ElementRef;
 
   // myObervable = new Observable((observer) => {
     // setTimeout(() => {
@@ -36,7 +42,7 @@ export class AppComponent {
   // myObervable = from(1); // returnns error because the input is not iterable
   // myObervable = from('hello'); // returnns'h', 'e', 'l', 'l', 'o', 'completed' because the input is iterable (string: sequence of chars)
   myPromise = new Promise((resolve, reject) => {
-    resolve(1);
+    resolve(1); 
   });
   myObervable = from(this.myPromise); // can be used to convert promise to observable
   getData() {
@@ -62,5 +68,20 @@ export class AppComponent {
         alert('streaming completed');
       },
     })
+  }
+
+  createBtnObs() {
+    let count = 0;
+    fromEvent(this.obsbtn.nativeElement, 'click').subscribe((data) => {
+      console.log(data);
+      this.addItem(++count);
+    });
+  }
+  addItem(count) {
+    let div = document.createElement('div');
+    div.innerText = `Item ${count}`;
+    div.className = 'data-list';
+    const container = document.getElementById('container');
+    container.appendChild(div);
   }
 }

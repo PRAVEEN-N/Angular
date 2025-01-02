@@ -429,3 +429,70 @@ In this example, the paragraph text will be green only within the `ExampleCompon
 - `ViewEncapsulation.ShadowDom`: Uses native Shadow DOM for true encapsulation, styles are scoped to the component.
 
 Choosing the appropriate view encapsulation strategy depends on your specific use case and the level of style encapsulation you need for your components.
+
+
+## `of` and `from` in RxJS
+
+RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using Observables. It provides powerful operators for handling asynchronous events and data streams. Two commonly used creation operators in RxJS are `of` and `from`.
+
+### `of`
+
+The `of` operator creates an Observable that emits the arguments you provide, in the order you provide them, and then completes.
+
+#### Usage
+
+```typescript
+import { of } from 'rxjs';
+
+const observable = of(1, 2, 3, 4, 5);
+
+observable.subscribe({
+    next: value => console.log(value),
+    complete: () => console.log('Complete')
+});
+```
+
+In this example, the Observable created by `of` emits the values `1`, `2`, `3`, `4`, and `5`, and then completes. The `subscribe` method is used to handle the emitted values and the completion event.
+
+### `from`
+
+The `from` operator creates an Observable from an array, an array-like object, a Promise, an iterable object, or an Observable-like object.
+
+#### Usage with Array
+
+```typescript
+import { from } from 'rxjs';
+
+const array = [10, 20, 30, 40, 50];
+const observable = from(array);
+
+observable.subscribe({
+    next: value => console.log(value),
+    complete: () => console.log('Complete')
+});
+```
+
+In this example, the Observable created by `from` emits the values from the array `[10, 20, 30, 40, 50]` and then completes.
+
+#### Usage with Promise
+
+```typescript
+import { from } from 'rxjs';
+
+const promise = Promise.resolve('Hello, RxJS!');
+const observable = from(promise);
+
+observable.subscribe({
+    next: value => console.log(value),
+    complete: () => console.log('Complete')
+});
+```
+
+In this example, the Observable created by `from` emits the resolved value of the Promise `'Hello, RxJS!'` and then completes.
+
+### Summary
+
+- `of`: Creates an Observable that emits the provided arguments in order and then completes.
+- `from`: Creates an Observable from various sources such as arrays, Promises, and iterables.
+
+Both `of` and `from` are useful for creating Observables from different types of data sources, allowing you to work with them in a reactive programming style.
