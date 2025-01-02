@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { from, fromEvent, Observable, of } from 'rxjs';
+import { filter, from, fromEvent, map, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +8,14 @@ import { from, fromEvent, Observable, of } from 'rxjs';
 })
 export class AppComponent implements AfterViewInit{
   ngAfterViewInit(): void {
-    this.createBtnObs();
+    // this.createBtnObs();
   }
   title = 'angular-observables';
 
   data: any[] = [];
 
-  @ViewChild('obsbtn')
-  obsbtn: ElementRef;
+  // @ViewChild('obsbtn')
+  // obsbtn: ElementRef;
 
   // myObervable = new Observable((observer) => {
     // setTimeout(() => {
@@ -44,7 +44,26 @@ export class AppComponent implements AfterViewInit{
   myPromise = new Promise((resolve, reject) => {
     resolve(1); 
   });
-  myObervable = from(this.myPromise); // can be used to convert promise to observable
+  // myObervable = from(this.myPromise); // can be used to convert promise to observable
+  // myObervable = from([2,4,6,8,10,12]); // can be used to convert array to observable
+  myObervable = from([2,4,6,8,10,12]).pipe(map((data) => {
+    return data * 5;
+  }), filter((data) => {
+    return data % 4 === 0;
+  }));
+  // transFormedObs = this.myObervable.pipe(map((data) => {
+  //   return data * 5;
+  // }));
+  // filtered = this.transFormedObs.pipe(filter((data) => {
+  //   return data % 4 === 0;
+  // }));
+
+  // filtered = this.myObervable.pipe(map((data) => {
+  //   return data * 5;
+  // }), filter((data) => {
+  //   return data % 4 === 0;
+  // }));
+
   getData() {
     // this.myObervable.subscribe(
     //   (data: any) => {
@@ -70,18 +89,18 @@ export class AppComponent implements AfterViewInit{
     })
   }
 
-  createBtnObs() {
-    let count = 0;
-    fromEvent(this.obsbtn.nativeElement, 'click').subscribe((data) => {
-      console.log(data);
-      this.addItem(++count);
-    });
-  }
-  addItem(count) {
-    let div = document.createElement('div');
-    div.innerText = `Item ${count}`;
-    div.className = 'data-list';
-    const container = document.getElementById('container');
-    container.appendChild(div);
-  }
+  // createBtnObs() {
+  //   let count = 0;
+  //   fromEvent(this.obsbtn.nativeElement, 'click').subscribe((data) => {
+  //     console.log(data);
+  //     this.addItem(++count);
+  //   });
+  // }
+  // addItem(count) {
+  //   let div = document.createElement('div');
+  //   div.innerText = `Item ${count}`;
+  //   div.className = 'data-list';
+  //   const container = document.getElementById('container');
+  //   container.appendChild(div);
+  // }
 }
