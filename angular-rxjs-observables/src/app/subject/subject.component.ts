@@ -81,19 +81,40 @@ export class SubjectComponent implements OnInit{
     //   console.log('Subscriber 3', data);
     // });
 
-    const asyncSubject = new AsyncSubject(); // AsyncSubject will emit the last value only after the subject is completed
-    asyncSubject.subscribe((data) => {
-      console.log('Subscriber 1', data);
+    // const asyncSubject = new AsyncSubject(); // AsyncSubject will emit the last value only after the subject is completed
+    // asyncSubject.subscribe((data) => {
+    //   console.log('Subscriber 1', data);
+    // });
+
+    // asyncSubject.next(2020);
+    // asyncSubject.next(2021);
+    // asyncSubject.next(2022);
+    // asyncSubject.complete();
+    // asyncSubject.next(2023); // It will not emit this value because the subject is completed
+
+    // asyncSubject.subscribe((data) => {
+    //   console.log('Subscriber 2', data);
+    // });
+
+    // Promise vs Observable
+    const promise = new Promise((resolve, reject) => {
+        console.log('Promise Called');
+        resolve('Promise Resolved');
+    }); // It will be called immediately and Only one value can be emitted
+
+    const obs = new Observable((obs) => {
+      console.log('Observable Called');
+      obs.next(100);
+      obs.next(200);
+      obs.next(300);
+    }); // It will be called only when we subscribe to it and multiple values can be emitted
+
+    promise.then((data) => {
+      console.log(data);
     });
 
-    asyncSubject.next(2020);
-    asyncSubject.next(2021);
-    asyncSubject.next(2022);
-    asyncSubject.complete();
-    asyncSubject.next(2023); // It will not emit this value because the subject is completed
-
-    asyncSubject.subscribe((data) => {
-      console.log('Subscriber 2', data);
+    obs.subscribe((data) => {
+      console.log(data);
     });
   }
 }

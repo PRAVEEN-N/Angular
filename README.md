@@ -748,3 +748,69 @@ export class AsyncSubjectComponent implements OnInit {
 In this example, the `AsyncSubject` is used to emit the last value (30) to all subscribers when the `complete` method is called. This ensures that subscribers only receive the final result of the asynchronous operation.
 
 Using `AsyncSubject` can help you manage and share the final result of asynchronous operations effectively in your Angular applications, making it easier to handle scenarios where only the last emitted value is of interest.
+
+## Difference Between Promise and Observable
+
+Both Promises and Observables are used to handle asynchronous operations in JavaScript, but they have some key differences in their behavior and usage.
+
+### Promise
+
+A Promise is an object that represents a single asynchronous operation that will eventually produce a value or an error. Promises are eager, meaning they start executing immediately upon creation.
+
+#### Key Features
+
+- **Single Value**: A Promise can only emit a single value or an error.
+- **Eager Execution**: A Promise starts executing immediately when it is created.
+- **Immutable**: Once a Promise is resolved or rejected, its state cannot be changed.
+- **Chaining**: Promises support chaining using the `then` and `catch` methods.
+
+#### Example
+
+```typescript
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('Promise resolved');
+    }, 1000);
+});
+
+promise.then(value => console.log(value)).catch(error => console.error(error));
+```
+
+### Observable
+
+An Observable is a powerful abstraction for working with streams of data. Unlike Promises, Observables are lazy and can emit multiple values over time.
+
+#### Key Features
+
+- **Multiple Values**: An Observable can emit multiple values over time.
+- **Lazy Execution**: An Observable does not start emitting values until it is subscribed to.
+- **Cancellable**: Subscriptions to Observables can be cancelled using the `unsubscribe` method.
+- **Operators**: Observables provide a rich set of operators for transforming, filtering, and combining streams of data.
+
+#### Example
+
+```typescript
+import { Observable } from 'rxjs';
+
+const observable = new Observable(observer => {
+    setTimeout(() => {
+        observer.next('Observable emitted value');
+        observer.complete();
+    }, 1000);
+});
+
+observable.subscribe({
+    next: value => console.log(value),
+    error: error => console.error(error),
+    complete: () => console.log('Observable complete')
+});
+```
+
+### Summary
+
+- **Single vs Multiple Values**: Promises emit a single value, while Observables can emit multiple values over time.
+- **Eager vs Lazy**: Promises execute immediately, whereas Observables start emitting values only when subscribed to.
+- **Immutability vs Cancellability**: Promises are immutable once resolved or rejected, while Observables allow subscriptions to be cancelled.
+- **Operators**: Observables provide a wide range of operators for handling data streams, making them more versatile for complex asynchronous operations.
+
+Choosing between Promises and Observables depends on the specific requirements of your application. Promises are simpler and suitable for single asynchronous operations, while Observables offer more flexibility and power for handling streams of data and complex asynchronous workflows.
