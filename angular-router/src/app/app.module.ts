@@ -33,6 +33,10 @@ const routes:Routes = [
     path: 'Courses',
     component: CoursesComponent,
   },
+  {
+    path:'**',// It should be the last route in the array of routes because it is a wildcard route. The router will select this route if the requested URL doesn't match any paths for routes defined in the configuration.
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({
