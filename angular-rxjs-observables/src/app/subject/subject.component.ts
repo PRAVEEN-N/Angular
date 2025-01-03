@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
+import { AsyncSubject, BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
 import {ajax} from 'rxjs/ajax';
 @Component({
   selector: 'app-subject',
@@ -63,22 +63,37 @@ export class SubjectComponent implements OnInit{
     //   console.log('Subscriber 3', data); // It will emit the last emitted value to the new subscriber i.e 200
     // });
 
-    const replySubject = new ReplaySubject(2); // BevahiorSubject is used to mention the initial value
+    // const replySubject = new ReplaySubject(2); // BevahiorSubject is used to mention the initial value
 
-    replySubject.next(2020);
-    replySubject.next(2021);
-    replySubject.next(2022);
+    // replySubject.next(2020);
+    // replySubject.next(2021);
+    // replySubject.next(2022);
 
-    replySubject.subscribe((data) => {
+    // replySubject.subscribe((data) => {
+    //   console.log('Subscriber 1', data);
+    // });
+    // replySubject.subscribe((data) => {
+    //   console.log('Subscriber 2', data);
+    // });
+    // replySubject.next(100);
+
+    // replySubject.subscribe((data) => {
+    //   console.log('Subscriber 3', data);
+    // });
+
+    const asyncSubject = new AsyncSubject(); // AsyncSubject will emit the last value only after the subject is completed
+    asyncSubject.subscribe((data) => {
       console.log('Subscriber 1', data);
     });
-    replySubject.subscribe((data) => {
-      console.log('Subscriber 2', data);
-    });
-    replySubject.next(100);
 
-    replySubject.subscribe((data) => {
-      console.log('Subscriber 3', data);
+    asyncSubject.next(2020);
+    asyncSubject.next(2021);
+    asyncSubject.next(2022);
+    asyncSubject.complete();
+    asyncSubject.next(2023); // It will not emit this value because the subject is completed
+
+    asyncSubject.subscribe((data) => {
+      console.log('Subscriber 2', data);
     });
   }
 }

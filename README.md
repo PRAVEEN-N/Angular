@@ -678,3 +678,73 @@ export class ReplaySubjectComponent implements OnInit {
 In this example, the `ReplaySubject` is used to store the last two emitted values and replay them to new subscribers. This ensures that new subscribers receive the most recent values upon subscription.
 
 Using `ReplaySubject` can help you manage and share data streams effectively in your Angular applications, especially when you need to replay previous values to new subscribers.
+
+## `AsyncSubject` in RxJS
+
+`AsyncSubject` is a type of `Subject` in RxJS that emits the last value (and only the last value) emitted by the source Observable, and only when the source Observable completes. This makes it useful for scenarios where you are only interested in the final result of an asynchronous operation.
+
+### Usage
+
+To use `AsyncSubject`, you need to import it from `rxjs` and create an instance of it. You can then subscribe to it and emit values using the `next` method. The `complete` method must be called to trigger the emission of the last value to the subscribers.
+
+```typescript
+import { AsyncSubject } from 'rxjs';
+
+const asyncSubject = new AsyncSubject<number>();
+
+asyncSubject.subscribe(value => console.log('Subscriber 1:', value));
+
+asyncSubject.next(1);
+asyncSubject.next(2);
+asyncSubject.next(3);
+
+asyncSubject.subscribe(value => console.log('Subscriber 2:', value)); // Will not receive any value until complete is called
+
+asyncSubject.next(4);
+asyncSubject.complete(); // Triggers the emission of the last value (4) to all subscribers
+```
+
+In this example, both subscribers will receive the value `4` when the `complete` method is called, as it is the last value emitted before completion.
+
+### Key Features
+
+- **Emits Last Value**: Only emits the last value emitted by the source Observable when it completes.
+- **Requires Completion**: The `complete` method must be called to trigger the emission of the last value.
+
+### Common Use Cases
+
+- **Final Result**: Useful for scenarios where you are only interested in the final result of an asynchronous operation, such as a calculation or a network request.
+- **Deferred Execution**: Helps in deferring the execution of a task until the final result is available.
+
+### Example
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { AsyncSubject } from 'rxjs';
+
+@Component({
+    selector: 'app-async-subject',
+    template: `
+        <p>Check the console for AsyncSubject output.</p>
+    `
+})
+export class AsyncSubjectComponent implements OnInit {
+    ngOnInit(): void {
+        const asyncSubject = new AsyncSubject<number>();
+
+        asyncSubject.subscribe(value => console.log('Subscriber 1:', value));
+
+        asyncSubject.next(10);
+        asyncSubject.next(20);
+
+        asyncSubject.subscribe(value => console.log('Subscriber 2:', value)); // Will not receive any value until complete is called
+
+        asyncSubject.next(30);
+        asyncSubject.complete(); // Triggers the emission of the last value (30) to all subscribers
+    }
+}
+```
+
+In this example, the `AsyncSubject` is used to emit the last value (30) to all subscribers when the `complete` method is called. This ensures that subscribers only receive the final result of the asynchronous operation.
+
+Using `AsyncSubject` can help you manage and share the final result of asynchronous operations effectively in your Angular applications, making it easier to handle scenarios where only the last emitted value is of interest.
