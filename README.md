@@ -612,3 +612,69 @@ In this example, the second subscriber will immediately receive the value `2` up
 - `BehaviorSubject`: Ideal for scenarios where you need to retain and provide the most recent value to new subscribers, such as maintaining the state in a service.
 
 Using `Subject` and `BehaviorSubject` effectively can help you manage and share data streams in your Angular applications, making it easier to implement reactive programming patterns.
+
+## `ReplaySubject` in RxJS
+
+`ReplaySubject` is a type of `Subject` in RxJS that records multiple values from the Observable execution and replays them to new subscribers. This is useful when you want to ensure that new subscribers receive some or all previous values emitted by the `ReplaySubject`.
+
+### Usage
+
+To use `ReplaySubject`, you need to import it from `rxjs` and create an instance of it. You can specify the buffer size, which determines how many previous values will be stored and replayed to new subscribers.
+
+```typescript
+import { ReplaySubject } from 'rxjs';
+
+const replaySubject = new ReplaySubject<number>(3); // Buffer size of 3
+
+replaySubject.subscribe(value => console.log('Subscriber 1:', value));
+
+replaySubject.next(1);
+replaySubject.next(2);
+replaySubject.next(3);
+replaySubject.next(4);
+
+replaySubject.subscribe(value => console.log('Subscriber 2:', value)); // Will receive the last 3 values (2, 3, 4)
+```
+
+In this example, the second subscriber will receive the last three values emitted by the `ReplaySubject` (2, 3, and 4) because the buffer size is set to 3.
+
+### Key Features
+
+- **Buffer Size**: Determines how many previous values are stored and replayed to new subscribers.
+- **Replays Values**: New subscribers receive the stored values immediately upon subscription.
+
+### Common Use Cases
+
+- **Caching**: Useful for caching the last few emitted values and providing them to new subscribers.
+- **State Management**: Helps in scenarios where you need to maintain and replay the state to new subscribers.
+
+### Example
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { ReplaySubject } from 'rxjs';
+
+@Component({
+    selector: 'app-replay-subject',
+    template: `
+        <p>Check the console for ReplaySubject output.</p>
+    `
+})
+export class ReplaySubjectComponent implements OnInit {
+    ngOnInit(): void {
+        const replaySubject = new ReplaySubject<number>(2); // Buffer size of 2
+
+        replaySubject.subscribe(value => console.log('Subscriber 1:', value));
+
+        replaySubject.next(1);
+        replaySubject.next(2);
+        replaySubject.next(3);
+
+        replaySubject.subscribe(value => console.log('Subscriber 2:', value)); // Will receive the last 2 values (2, 3)
+    }
+}
+```
+
+In this example, the `ReplaySubject` is used to store the last two emitted values and replay them to new subscribers. This ensures that new subscribers receive the most recent values upon subscription.
+
+Using `ReplaySubject` can help you manage and share data streams effectively in your Angular applications, especially when you need to replay previous values to new subscribers.
