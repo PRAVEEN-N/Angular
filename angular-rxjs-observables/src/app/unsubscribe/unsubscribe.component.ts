@@ -7,5 +7,15 @@ import { interval } from 'rxjs';
   styleUrls: ['./unsubscribe.component.css']
 })
 export class UnsubscribeComponent {
-  
+  counter = interval(1000);// Emitting a value every second
+  data : number[] = [];
+  subscriber;
+  onSubscribe() {
+    this.subscriber = this.counter.subscribe((val) => {
+      this.data.push(val);
+    });
+  }
+  onUnSubscribe() {
+    this.subscriber.unsubscribe();
+  }
 }
