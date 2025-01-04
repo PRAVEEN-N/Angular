@@ -21,7 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FormsModule } from '@angular/forms';
 
-const routes:Routes = [
+const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'About', component: AboutComponent },
@@ -33,14 +33,21 @@ const routes:Routes = [
     path: 'Courses',
     component: CoursesComponent,
   },
+  // {
+  //   path:'Courses/Course/:id',
+  //   component: CourseDetailComponent
+  // },
   {
-    path:'Courses/Course/:id',
-    component: CourseDetailComponent
+    path: 'Courses',
+    children: [
+      { path: 'Course/:id', component: CourseDetailComponent },
+      {path:'Popular', component:PopularComponent}
+    ]
   },
   {
-    path:'**',// It should be the last route in the array of routes because it is a wildcard route. The router will select this route if the requested URL doesn't match any paths for routes defined in the configuration.
-    component: NotFoundComponent
-  }
+    path: '**', // It should be the last route in the array of routes because it is a wildcard route. The router will select this route if the requested URL doesn't match any paths for routes defined in the configuration.
+    component: NotFoundComponent,
+  },
 ];
 
 @NgModule({
