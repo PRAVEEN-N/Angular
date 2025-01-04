@@ -14,6 +14,6 @@ export class CoursesComponent {
   // router:Router = inject(Router);
   // navigateToCourse(courseId) {
   //   console.log('CurseId', courseId);
-  //   this.router.navigate(['Courses/Course', courseId]);
+  //   this.router.navigate(['Courses/Course', courseId]) ;
   // }
 }

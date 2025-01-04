@@ -181,7 +181,10 @@ hr{
 }
 .prev-btn{
     float: left;
+    padding: 10px 20px;
+    background-color: #CB4335;
 }
 .next-btn{
     float: right;
 }
+
