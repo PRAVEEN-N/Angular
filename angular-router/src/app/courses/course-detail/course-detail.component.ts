@@ -18,7 +18,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy{
       let id = +params.get('id');
       this.selectedCourse = this.courseService.courses.find(c => c.id === id);
     });
-    // let id = +this.activateRoute.snapshot.paramMap.get('id');
+    // let id = +this.activateRoute.snapshot.paramMap.get('id'); This will not work because the component is already initialized and the route is not changed.
     // console.log(this.selectedCourse);
     // this.selectedCourse  = this.courseService.courses.find(c => c.id === id);
   }
