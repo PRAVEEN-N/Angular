@@ -20,35 +20,36 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FormsModule } from '@angular/forms';
+import { RoutingModule } from './router.module';
 
-const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'About', component: AboutComponent },
-  {
-    path: 'Contact',
-    component: ContactComponent,
-  },
-  {
-    path: 'Courses',
-    component: CoursesComponent,
-  },
-  // {
-  //   path:'Courses/Course/:id',
-  //   component: CourseDetailComponent
-  // },
-  {
-    path: 'Courses',
-    children: [
-      { path: 'Course/:id', component: CourseDetailComponent },
-      {path:'Popular', component:PopularComponent}
-    ]
-  },
-  {
-    path: '**', // It should be the last route in the array of routes because it is a wildcard route. The router will select this route if the requested URL doesn't match any paths for routes defined in the configuration.
-    component: NotFoundComponent,
-  },
-];
+// const routes: Routes = [
+//   { path: '', redirectTo: 'home', pathMatch: 'full' },
+//   { path: 'home', component: HomeComponent },
+//   { path: 'About', component: AboutComponent },
+//   {
+//     path: 'Contact',
+//     component: ContactComponent,
+//   },
+//   {
+//     path: 'Courses',
+//     component: CoursesComponent,
+//   },
+//   // {
+//   //   path:'Courses/Course/:id',
+//   //   component: CourseDetailComponent
+//   // },
+//   {
+//     path: 'Courses',
+//     children: [
+//       { path: 'Course/:id', component: CourseDetailComponent },
+//       {path:'Popular', component:PopularComponent}
+//     ]
+//   },
+//   {
+//     path: '**', // It should be the last route in the array of routes because it is a wildcard route. The router will select this route if the requested URL doesn't match any paths for routes defined in the configuration.
+//     component: NotFoundComponent,
+//   },
+// ];
 
 @NgModule({
   declarations: [
@@ -69,7 +70,10 @@ const routes: Routes = [
     NotFoundComponent,
     CheckoutComponent,
   ],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, FormsModule, 
+    // RouterModule.forRoot(routes)
+    RoutingModule
+    ],
   providers: [ServicesService, CourseService],
   bootstrap: [AppComponent],
 })
