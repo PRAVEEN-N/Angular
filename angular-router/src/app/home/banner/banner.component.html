@@ -9,6 +9,10 @@
     </div>
     <div class="home-page-banner-search">
       <input type="text" class="search-input" placeholder="Search Courses" #searchVar [(ngModel)]="searchText">
-      <button class="search-button" (click)="searchCourse()">Search Courses</button>
+      <button class="search-button" (click)="searchCourse()">Search Courses</button> 
+<!-- 
+      <input type="text" class="search-input" placeholder="Search Courses" #searchVar>
+      <button class="search-button" routerLink="Courses" [queryParams]="{search:searchVar.value}">Search Courses</button>   -->
+
     </div>
   </div>
