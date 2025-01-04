@@ -23,11 +23,12 @@
         </div>
         <div class="course-action-buttons">
             <button class="btn">BUY NOW</button>
-            <button class="btn">DETAILS</button>
+            <button class="btn" [routerLink]="'/Courses/Course/'+ course.id">DETAILS</button>
         </div>
     </div>
     <div class="popular-course-bottom">
-        <button class="go-to-course-button" routerLink="/Courses">
+        <!-- <button class="go-to-course-button" routerLink="/Courses"> With "/" it is absolute path otherwise relative path -->
+        <button class="go-to-course-button" (click)="navigateToCourses()">
             Go to Courses Page 
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
         </button>
