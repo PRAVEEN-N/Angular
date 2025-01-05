@@ -3,7 +3,7 @@
 // import { Router } from "@angular/router";
 
 import { inject, Inject, Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanActivateFn, CanDeactivateFn, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { AuthService } from "./Services/auth.service";
 import { Observable } from "rxjs";
 
@@ -18,6 +18,12 @@ export const canActivate:CanActivateFn = (route, state) =>{
     return true;
 }
 
+export interface ICanDeactivateComp {
+    canExit(): boolean;
+}
+export const canExit: CanDeactivateFn<ICanDeactivateComp> = (component: ICanDeactivateComp, currentRoute, currentState, nextState) =>{
+    return component.canExit();
+};
 
 // @Injectable({
 //     providedIn: 'root'
