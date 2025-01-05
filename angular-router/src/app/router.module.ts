@@ -9,7 +9,8 @@ import { PopularComponent } from "./home/popular/popular.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { LoginComponent } from "./login/login.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
-import { AuthGuard } from "./auth.guard";
+// import { AuthGuard } from "./auth.guard";
+import { canActivate } from "./auth.guard";
 // import { CanActivate } from "./auth.guard";
 // import { AuthService } from "./Services/auth.service";
 
@@ -31,11 +32,12 @@ const routes: Routes = [
     // },
     {
       path: 'Courses',
-      canActivateChild:[AuthGuard],
+      // canActivateChild:[AuthGuard],
+      canActivateChild: [canActivate],
       children: [
         { path: 'Course/:id', component: CourseDetailComponent },
         {path:'Popular', component:PopularComponent},
-        {path:'Checkout', component:CheckoutComponent, canActivate:[AuthGuard]}
+        {path:'Checkout', component:CheckoutComponent, canActivate:[canActivate]}
       ]
     },
     {
