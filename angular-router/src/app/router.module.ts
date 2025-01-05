@@ -10,7 +10,7 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { LoginComponent } from "./login/login.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
 // import { AuthGuard } from "./auth.guard";
-import { canActivate, canExit } from "./auth.guard";
+import { canActivate, canExit, resolve } from "./auth.guard";
 // import { CanActivate } from "./auth.guard";
 // import { AuthService } from "./Services/auth.service";
 
@@ -26,6 +26,7 @@ const routes: Routes = [
     {
       path: 'Courses',
       component: CoursesComponent,
+      resolve: {courses: resolve}
     },
     // {
     //   path:'Courses/Course/:id',

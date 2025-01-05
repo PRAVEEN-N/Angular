@@ -6,6 +6,7 @@ import { inject, Inject, Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanActivateFn, CanDeactivateFn, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { AuthService } from "./Services/auth.service";
 import { Observable } from "rxjs";
+import { CourseService } from "./Services/course.service";
 
 export const canActivate:CanActivateFn = (route, state) =>{
     const authSrv = inject(AuthService);
@@ -25,6 +26,10 @@ export const canExit: CanDeactivateFn<ICanDeactivateComp> = (component: ICanDeac
     return component.canExit();
 };
 
+export const resolve = () => {
+    const courseSrv = inject(CourseService);
+    return courseSrv.getAllcourses();
+}
 // @Injectable({
 //     providedIn: 'root'
 // })

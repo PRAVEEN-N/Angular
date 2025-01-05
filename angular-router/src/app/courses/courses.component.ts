@@ -33,7 +33,8 @@ export class CoursesComponent implements OnInit {
           c.title.toLowerCase().includes(searchText.toLowerCase())
         );
       } else {
-        this.AllCourses = this.coursesService.courses;
+        this.AllCourses = this.activedRoute.snapshot.data['courses'];
+        // this.AllCourses = this.coursesService.courses;
       }
     });
   }
