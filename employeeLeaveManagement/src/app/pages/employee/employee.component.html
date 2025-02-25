@@ -1,0 +1,118 @@
+<div class="container-fluid my-4">
+    <div class="row">
+        <div class="col-7">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <div class="row">
+                        <div class="col-6 text-white">
+                            <strong>Employee Portal</strong> 
+                        </div>
+                        <div class="col-6 text-end">
+                            <button class="btn btn-warning">Add New</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Employee ID</th>
+                                <th>Name</th>
+                                <th>Contact No</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                                <th>Role</th>
+                                <th>Gender</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of employeeList; let i=index">
+                                <td>{{item.employeeId}}</td>
+                                <td>{{item.employeeName}}</td>
+                                <td>{{item.contactNo}}</td>
+                                <td>{{item.emailId}}</td>
+                                <td>{{item.deptId}}</td>
+                                <td>{{item.role}}</td>
+                                <td>{{item.gender}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning mt-3" (click)="onEdit(item)">Edit</button>
+                                    <button type="button" class="btn btn-danger mt-3" (click)="onDelete(item.employeeId)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <div class="row">
+                        <div class="col-6 text-white">
+                            <strong>New Employee</strong> 
+                        </div>
+                        <div class="col-6 text-end">
+                            <button class="btn btn-primary">Close</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="mb-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="employeeName" class="form-label">Employee Name</label>
+                                <input type="text" name="employeeName" [(ngModel)]="employee.employeeName" [(ngModel)]="employee.employeeName" class="form-control" id="employeeName" placeholder="Enter employee name">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactNo" class="form-label">Contact No</label>
+                                <input type="text" name="contactNo" [(ngModel)]="employee.contactNo" class="form-control" id="contactNo" placeholder="Enter contact number">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="emailId" class="form-label">Email</label>
+                                <input type="email" name="emailId" [(ngModel)]="employee.emailId" class="form-control" id="emailId" placeholder="Enter email">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="deptId" class="form-label">Parent Department</label>
+                                <select id="deptId" class="form-select" name="parentDeptId" (change)="loadChildDepartments()" [(ngModel)]="parentDeptId">
+                                    <option selected>Select department</option>
+                                    <!-- @for (item of parentDeptList; track $index) {
+                                        <option [value]="item.parentDeptId">{{item.departmentName}}</option>
+                                    } -->
+                                    <option *ngFor="let item of parentDeptList; let i=index" [value]="item.departmentId">{{item.departmentName}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="deptId" class="form-label" >Child Department</label>
+                                <select id="deptId" class="form-select" name="deptId" [(ngModel)]="employee.deptId">
+                                    <option selected>Select department</option>
+                                    <option *ngFor="let item of childDeptList; let i=index" [value]="item.childDeptId">{{item.departmentName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" name="password" [(ngModel)]="employee.password" class="form-control" id="password" placeholder="Enter password">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select id="gender" class="form-select" name="gender" [(ngModel)]="employee.gender">
+                                    <option selected>Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button *ngIf="employee.employeeId == 0" type="button" (click)="onSubmit()" class="btn btn-warning mt-3">Save Employee</button>
+                        <button *ngIf="employee.employeeId !== 0" type="button" (click)="onUpdate()" class="btn btn-warning mt-3">Update Employee</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
